@@ -9,14 +9,14 @@ use Event;
 
 class Plugin extends PluginBase
 {
-
     public function pluginDetails()
     {
         return [
             'name'        => 'rainlab.blog::lang.plugin.name',
             'description' => 'rainlab.blog::lang.plugin.description',
             'author'      => 'Alexey Bobkov, Samuel Georges',
-            'icon'        => 'icon-pencil'
+            'icon'        => 'icon-pencil',
+            'homepage'    => 'https://github.com/rainlab/blog-plugin'
         ];
     }
 
@@ -26,15 +26,33 @@ class Plugin extends PluginBase
             'RainLab\Blog\Components\Post'       => 'blogPost',
             'RainLab\Blog\Components\Posts'      => 'blogPosts',
             'RainLab\Blog\Components\Categories' => 'blogCategories',
+            'RainLab\Blog\Components\RssFeed'    => 'blogRssFeed'
         ];
     }
 
     public function registerPermissions()
     {
         return [
-            'rainlab.blog.access_posts'       => ['tab' => 'Blog', 'label' => 'rainlab.blog::lang.blog.access_posts'],
-            'rainlab.blog.access_categories'  => ['tab' => 'Blog', 'label' => 'rainlab.blog::lang.blog.access_categories'],
-            'rainlab.blog.access_other_posts' => ['tab' => 'Blog', 'label' => 'rainlab.blog::lang.blog.access_other_posts']
+            'rainlab.blog.access_posts' => [
+                'tab'   => 'rainlab.blog::lang.blog.tab',
+                'label' => 'rainlab.blog::lang.blog.access_posts'
+            ],
+            'rainlab.blog.access_categories' => [
+                'tab'   => 'rainlab.blog::lang.blog.tab',
+                'label' => 'rainlab.blog::lang.blog.access_categories'
+            ],
+            'rainlab.blog.access_other_posts' => [
+                'tab'   => 'rainlab.blog::lang.blog.tab',
+                'label' => 'rainlab.blog::lang.blog.access_other_posts'
+            ],
+            'rainlab.blog.access_import_export' => [
+                'tab'   => 'rainlab.blog::lang.blog.tab',
+                'label' => 'rainlab.blog::lang.blog.access_import_export'
+            ],
+            'rainlab.blog.access_publish' => [
+                'tab'   => 'rainlab.blog::lang.blog.tab',
+                'label' => 'rainlab.blog::lang.blog.access_publish'
+            ]
         ];
     }
 
@@ -45,24 +63,30 @@ class Plugin extends PluginBase
                 'label'       => 'rainlab.blog::lang.blog.menu_label',
                 'url'         => Backend::url('rainlab/blog/posts'),
                 'icon'        => 'icon-pencil',
+                'iconSvg'     => 'plugins/rainlab/blog/assets/images/blog-icon.svg',
                 'permissions' => ['rainlab.blog.*'],
-                'order'       => 500,
+                'order'       => 30,
 
                 'sideMenu' => [
+                    'new_post' => [
+                        'label'       => 'rainlab.blog::lang.posts.new_post',
+                        'icon'        => 'icon-plus',
+                        'url'         => Backend::url('rainlab/blog/posts/create'),
+                        'permissions' => ['rainlab.blog.access_posts']
+                    ],
                     'posts' => [
                         'label'       => 'rainlab.blog::lang.blog.posts',
                         'icon'        => 'icon-copy',
                         'url'         => Backend::url('rainlab/blog/posts'),
-                        'permissions' => ['rainlab.blog.access_posts'],
+                        'permissions' => ['rainlab.blog.access_posts']
                     ],
                     'categories' => [
                         'label'       => 'rainlab.blog::lang.blog.categories',
                         'icon'        => 'icon-list-ul',
                         'url'         => Backend::url('rainlab/blog/categories'),
-                        'permissions' => ['rainlab.blog.access_categories'],
-                    ],
+                        'permissions' => ['rainlab.blog.access_categories']
+                    ]
                 ]
-
             ]
         ];
     }
@@ -85,11 +109,12 @@ class Plugin extends PluginBase
         /*
          * Register the image tag processing callback
          */
-        TagProcessor::instance()->registerCallback(function($input, $preview){
-            if (!$preview)
+        TagProcessor::instance()->registerCallback(function($input, $preview) {
+            if (!$preview) {
                 return $input;
+            }
 
-            return preg_replace('|\<img alt="([0-9]+)" src="image"([^>]*)\/>|m',
+            return preg_replace('|\<img src="image" alt="([0-9]+)"([^>]*)\/>|m',
                 '<span class="image-placeholder" data-index="$1">
                     <span class="upload-dropzone">
                         <span class="label">Click or drop an image...</span>
@@ -102,21 +127,26 @@ class Plugin extends PluginBase
 
     public function boot()
     {
+        /*
+         * Register menu items for the RainLab.Pages plugin
+         */
         Event::listen('pages.menuitem.listTypes', function() {
             return [
-                'blog-category' => 'Blog category',
-                'all-blog-categories' => 'All blog categories',
+                'blog-category'       => 'rainlab.blog::lang.menuitem.blog_category',
+                'all-blog-categories' => 'rainlab.blog::lang.menuitem.all_blog_categories'
             ];
         });
 
         Event::listen('pages.menuitem.getTypeInfo', function($type) {
-            if ($type == 'blog-category' || $type == 'all-blog-categories')
+            if ($type == 'blog-category' || $type == 'all-blog-categories') {
                 return Category::getMenuTypeInfo($type);
+            }
         });
 
         Event::listen('pages.menuitem.resolveItem', function($type, $item, $url, $theme) {
-            if ($type == 'blog-category' || $type == 'all-blog-categories')
+            if ($type == 'blog-category' || $type == 'all-blog-categories') {
                 return Category::resolveMenuItem($item, $url, $theme);
+            }
         });
     }
 }

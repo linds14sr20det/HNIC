@@ -16,16 +16,6 @@ class Post extends ComponentBase
      */
     public $categoryPage;
 
-    /**
-     * @var string
-     */
-    public $next;
-
-    /**
-     * @var string
-     */
-    public $prev;
-
     public function componentDetails()
     {
         return [
@@ -49,8 +39,6 @@ class Post extends ComponentBase
                 'type'        => 'dropdown',
                 'default'     => 'blog/category',
             ],
-            'next' => [],
-            'prev' => [],
         ];
     }
 
@@ -64,7 +52,7 @@ class Post extends ComponentBase
         $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
         $this->post = $this->page['post'] = $this->loadPost();
         $this->post['next'] = $this->page['next'] = $this->getNextPost();
-        $this->post['prev'] = $this->page['prev'] = $this->getPrevPost();
+        $this->post['prev'] = $this->page['prev'] = $this->getPrevPost();    
     }
 
     protected function getNextPost() {
@@ -80,18 +68,15 @@ class Post extends ComponentBase
         $id = $this->post->id;
         $post = BlogPost::isPublished()->orderBy('id', 'desc')->where('id', '<', $id)->first();
         if (!isset($post['slug']) || trim($post['slug'])==='') {
-	    return false;
+            return false;
         }
         return $post['slug'];
     }
 
     protected function loadPost()
     {
-        // @deprecated remove if year >= 2015
-        $deprecatedSlug = $this->propertyOrParam('idParam');
-
-        $slug = $this->property('slug', $deprecatedSlug);
-        $post = BlogPost::isPublished()->where('slug', '=', $slug)->first();
+        $slug = $this->property('slug');
+        $post = BlogPost::isPublished()->where('slug', $slug)->first();
 
         /*
          * Add a "url" helper attribute for linking to each category

@@ -12,29 +12,37 @@ return [
         'create_post' => 'записи',
         'categories' => 'Категории',
         'create_category' => 'категории',
+        'tab' => 'Блог',
         'access_posts' => 'Управление записями блога',
         'access_categories' => 'Управление категориями блога',
+        'access_other_posts' => 'Управление записями других пользователей',
         'delete_confirm' => 'Вы уверены, что хотите сделать это?',
         'chart_published' => 'Опубликовано',
         'chart_drafts' => 'Черновики',
         'chart_total' => 'Всего',
-        'new_category' => 'Новая категория',
+        'new_category' => 'Новая категория'
     ],
     'posts' => [
         'list_title' => 'Управление записями блога',
-        'category' => 'Категория',
-        'hide_published' => 'Скрыть опубликованные',
-        'new_post' => 'Новая запись',
+        'filter_category' => 'Категория',
+        'filter_published' => 'Скрыть опубликованные',
+        'new_post' => 'Новая запись'
     ],
     'post' => [
         'title' => 'Заголовок',
         'title_placeholder' => 'Новый заголовок записи',
+        'content' => 'Контент',
+        'content_html' => 'HTML Контент',
         'slug' => 'URL записи',
         'slug_placeholder' => 'new-post-slug',
         'categories' => 'Категории',
-        'created' => 'Дата создания',
-        'updated' => 'Дата обновления',
+        'author_email' => 'Email автора',
+        'created' => 'Создано',
+        'created_date' => 'Дата создания',
+        'updated' => 'Обновлено',
+        'updated_date' => 'Дата обновления',
         'published' => 'Опубликовано',
+        'published_date' => 'Дата публикации',
         'published_validation' => 'Пожалуйста, укажите дату публикации.',
         'tab_edit' => 'Редактор',
         'tab_categories' => 'Категории',
@@ -43,6 +51,7 @@ return [
         'tab_manage' => 'Управление',
         'published_on' => 'Опубликовано',
         'excerpt' => 'Отрывок',
+        'summary' => 'Резюме',
         'featured_images' => 'Тематические изображения',
         'delete_confirm' => 'Вы действительно хотите удалить эту запись?',
         'close_confirm' => 'Запись не была сохранена.',
@@ -51,6 +60,7 @@ return [
     'categories' => [
         'list_title' => 'Управление категориями блога',
         'new_category' => 'Новая категория',
+        'uncategorized' => 'Без категории'
     ],
     'category' => [
         'name' => 'Название',
@@ -60,6 +70,7 @@ return [
         'posts' => 'Записи',
         'delete_confirm' => 'Вы действительно хотите удалить эту категорию?',
         'return_to_categories' => 'Вернуться к списку категорий',
+        'reorder' => 'Порядок категорий'
     ],
     'settings' => [
         'category_title' => 'Список категорий блога',
@@ -91,7 +102,6 @@ return [
         'posts_category' => 'Страница категорий',
         'posts_category_description' => 'Название категории на странице записи "размещена в категории". Это свойство используется по умолчанию компонентом.',
         'posts_post' => 'Страница записи',
-        'posts_post_description' => 'Название страницы для ссылки "подробнее". Это свойство используется по умолчанию компонентом.',
-    ],
+        'posts_post_description' => 'Название страницы для ссылки "подробнее". Это свойство используется по умолчанию компонентом.'
+    ]
 ];
-

@@ -56,9 +56,9 @@ return [
             'driver'    => 'mysql',
             'host'      => 'localhost',
             'port'      => '',
-            'database'  => 'database',
+            'database'  => 'october',
             'username'  => 'root',
-            'password'  => '',
+            'password'  => '6CZ9HO8D3naq',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
@@ -116,12 +116,7 @@ return [
 
         'cluster' => false,
 
-        'default' => [
-            'host'     => '127.0.0.1',
-            'password' => null,
-            'port'     => 6379,
-            'database' => 0,
-        ],
+        'default' => 'mysql',
 
     ],
 

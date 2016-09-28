@@ -3,7 +3,7 @@
 # ===================================
 
 # Model List Column configuration
-list: @/plugins/rainlab/blog/models/category/columns.yaml
+list: ~/plugins/rainlab/blog/models/category/columns.yaml
 
 # Model Class name
 modelClass: RainLab\Blog\Models\Category
@@ -21,7 +21,9 @@ noRecordsMessage: backend::lang.list.no_records
 recordsPerPage: 5
 
 # Display checkboxes next to each record
-# showCheckboxes: true
+showCheckboxes: true
+
+showTree: true
 
 # Toolbar widget configuration
 toolbar:

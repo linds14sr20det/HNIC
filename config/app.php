@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost',
+    'url' => 'http://www.hobbynight.ca',
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return [
     |
     */
 
-    'key' => 'CHANGE_ME!!!!!!!!!!!!!!!!!!!!!!!',
+    'key' => 'jCZ6ouco3i663xrKLQxiXCR6cNSH78sm',
 
     'cipher' => 'AES-256-CBC',
 
