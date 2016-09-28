@@ -1,0 +1,41 @@
+title = "Post"
+url = "/blog/post/:slug"
+layout = "default"
+hidden = "0"
+
+[blogPost]
+slug = "{{ :slug }}"
+categoryPage = "categorylist"
+==
+<script src="https://hammerjs.github.io/dist/hammer.js"></script>
+
+<div class="wrapped-content">
+    {% if post %}
+        <h2>{{ post.title }}</h2>
+    
+        {% component 'blogPost' %}
+        
+        <a href="{{ '/404' }}">Show notes</a>
+        
+        <div id="disqus_thread" class="commentsys"></div>
+        
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'hobbynightincanada'; // required: replace example with your forum shortname
+    
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    {% else %}
+        <h2>Post not found</h2>
+    {% endif %}
+</div>
+
+<script src="{{ [
+    'assets/javascript/swipe.js'
+]|theme }}"></script>

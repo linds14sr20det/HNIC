@@ -1,0 +1,18 @@
+title = "categorylist"
+url = "/blog/categories/:slug/:page?"
+layout = "default"
+hidden = "0"
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+categoryFilter = "{{ :slug }}"
+postsPerPage = "10"
+noPostsMessage = "No posts found"
+categoryPage = "categorylist"
+postPage = "post"
+==
+{% if not category %}
+    <h2>Category not found</h2>
+{% else %}
+    {% component 'blogPosts' %}
+{% endif %}

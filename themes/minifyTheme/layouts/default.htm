@@ -1,0 +1,86 @@
+description = "Default"
+==
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hobby Night in Canada</title>
+        <meta name="author" content="slind">
+        <meta name="description" content="Hobby Night in Canada is a bi-weekly podcast that talks about various aspects of tabletop gaming and the hobby that surrounds this pastime, with an extra dosage of adult humor.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="hobby night in canada, hnic, hobby, night, canada, warhammer, 40k, games workshop, inifinty, dystopian wars, x-wing, attack wing, table top, wargames, malifaux, warmachine, hordes, drop zone commander" />
+        <meta name="theme-color" content="#80a1cc">
+        
+        <!-- Include meta tag to ensure proper rendering and touch zooming -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/png" href="{{ 'assets/images/hnic.png'|theme }}" />
+        
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        
+        <link href="{{ [
+			'assets/css/bootstrap.min.css',
+			'assets/css/theme.css'
+        ]|theme }}" rel="stylesheet">
+        
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-58716065-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+    </head>
+    <body>
+        <!-- Header -->
+        <header id="layout-header">
+            <!-- Nav -->
+            <nav id="nav" class="navbar" role="navigation">
+                <div class="navbar-main">
+                    <ul class="nav navbar-nav">
+                        <li class="{% if this.page.url == '/:page?' %}active{% endif %} hnicicon">
+                        	<a href="{{ '/'|default}}"><img src="/themes/minifyTheme/assets/images/hobbynight200.png"></a>
+                        </li>
+                        <li class="social">
+                        	<a href="https://twitter.com/hnicpodcast" target="_blank"><i class="fa fa-twitter"></i></a>
+                        </li>
+						<li class="social">
+                        	<a href="https://www.facebook.com/hobbynightincanada" target="_blank"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li class="social">
+                        	<a href="http://instagram.com/hobbynightincanada" target="_blank"><i class="fa fa-instagram"></i></a>
+                        </li>
+						<li class="{% if category.slug == 'events' or post.categories[0].slug == 'events' %}active{% endif %} nav-content">
+                        	<a href="{{ '/blog/categories/events/1'|default }}">events</a>
+                        </li>
+                        <li class="{% if category.slug == 'blog' or post.categories[0].slug == 'blog' %}active{% endif %} nav-content">
+                        	<a href="{{ '/blog/categories/blog/1'|default }}">blog</a>
+                        </li>
+                        <li class="{% if category.slug == 'episodes' or post.categories[0].slug == 'episodes' %}active{% endif %} nav-content">
+                        	<a href="{{ '/blog/categories/episodes/1'|default }}">episodes</a>
+                        </li>
+                        <li class="nav-content mobiletag">
+                        	<a href="#">hnic.</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div id="myElement"></div>
+		{% page %}
+        <!-- Footer -->
+        <footer id="layout-footer">
+            {% partial "footer" %}
+        </footer>
+
+        <!-- Scripts -->
+        <script src="{{ [
+            'assets/javascript/jquery-1.11.3.min.js',
+            'assets/javascript/app.js'
+        ]|theme }}"></script>
+
+        {% scripts %}
+        
+    </body>
+</html>

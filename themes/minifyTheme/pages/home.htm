@@ -1,0 +1,15 @@
+title = "Canada's Tabletop Gaming Podcast"
+url = "/:page?"
+layout = "default"
+hidden = "0"
+meta_description = "Canada's premiere tabletop gaming hobby-centric podcast! Hobby Night in Canada is a podcast by five veteran hobbyists about tabletop miniature wargaming. Dan, Steve, Tom, Mike and Ward paint miniatures, play games go to tournaments and talk about Warhammer, Warmachine/Hordes, X-Wing and any other game they can get their hands on!"
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = "10"
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "categorylist"
+postPage = "post"
+==
+{% component 'blogPosts' %}
